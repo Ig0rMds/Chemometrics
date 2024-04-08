@@ -5,7 +5,6 @@
 #'
 #' @param x The value of the analyzed concentration
 #' @param y A vector of the dependent variable Y
-#' @param z The average of y
 #'
 #' @return Assessment regarding accuracy and precision
 #'
@@ -15,7 +14,7 @@
 #'Test with TCDF MELDD methodology. Data obtained from (SICUPIRA,2019)
 #'x<- 0.02
 #'y<- c(233153.0,257269.0,307816.0,256882.0,291418.0,264616.0,262520.0)
-#'AP(x,y,z)
+#'AP(x,y)
 #'@export
 #Packge Chemometrics_UFVJM
 #Algorithm for  check accuracy and precision

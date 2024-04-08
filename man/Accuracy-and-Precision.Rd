@@ -11,8 +11,6 @@ AP(x, y)
 \item{x}{The value of the analyzed concentration}
 
 \item{y}{A vector of the dependent variable Y}
-
-\item{z}{The average of y}
 }
 \value{
 Assessment regarding accuracy and precision
@@ -24,7 +22,7 @@ The function analyzes the accuracy and precision of the data provided
 Test with TCDF MELDD methodology. Data obtained from (SICUPIRA,2019)
 x<- 0.02
 y<- c(233153.0,257269.0,307816.0,256882.0,291418.0,264616.0,262520.0)
-AP(x,y,z)
+AP(x,y)
 }
 \author{
 Igor Samuel Mendes
