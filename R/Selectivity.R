@@ -5,8 +5,8 @@
 #' that of your white sample, for visual comparison purposes regarding selectivity
 #' of analysis
 #'
-#' @param t Total data points
-#' @param xm X axys multiplier
+#' @param tdp Total data points
+#' @param t Time,in minutes, of the Chromatographic run
 #' @param ym Y axys multiplier
 #' @param y spiked analyte response
 #' @param z blank sample response
@@ -22,14 +22,19 @@
 #'@export
 #Package chemometrics_UFVJM
 #Algorithm for selectivity
-Sel<- function(t,xm,ym,y,z){
-  x <- c(1: t-1)
-  xt<- xm*x
-  yr<- y[1:t]
-  zr<- z[1:t]
+SEL<- function(tdp,t,ym,y,z){
+  x <- c(1:tdp)
+  xm<- t/tdp
+  xt <- numeric(length(x))
+
+  for (i in 1:(length(x))) {
+    xt[i] <- (x[i]-1) * xm
+  }
+
+  yr<- y[1:tdp]
+  zr<- z[1:tdp]
   yt<- ym*yr
   zt<- ym*zr
-
   require(ggplot2)
   dados<-data.frame(x,yr,zr)
 
