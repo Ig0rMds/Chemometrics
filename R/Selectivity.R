@@ -27,12 +27,29 @@ Sel<- function(t,xm,ym,y,z){
   xt<- xm*x
   yr<- y[1:t]
   zr<- z[1:t]
-  yt<- ym*y
-  zt<- ym*z
+  yt<- ym*yr
+  zt<- ym*zr
 
   require(ggplot2)
   dados<-data.frame(x,yr,zr)
-  ggplot(dados,aes(x=x,y=yr))+
-    geom_line(aes(col="Fortified sample"))+
-    geom_line(aes(y=zr,col="blank sample"))
+
+  # Gráfico 1: xt vs yt
+  plot_xt_yt <- ggplot(dados, aes(x = xt)) +
+    geom_line(aes(y = yt, colour = "Fortified sample")) +
+    scale_color_manual(values = c("Fortified sample" = "black"))+
+    labs(x = "xt", y = "yt")
+  # Gráfico 2: xt vs zt
+  plot_xt_zt <- ggplot(dados, aes(x = xt)) +
+    geom_line(aes(y = zt, color = "blank sample")) +
+    scale_color_manual(values = c("blank sample" = "blue"))+
+    labs(x = "xt", y = "zt")
+
+  # Mostrar os dois gráficos na interface "plots"
+  require("gridExtra")
+  show_plots <- function(plots) {
+    gridExtra::grid.arrange(grobs = plots, ncol = 1)
+  }
+
+  # Exibir os gráficos
+  show_plots(list(plot_xt_yt, plot_xt_zt))
 }
