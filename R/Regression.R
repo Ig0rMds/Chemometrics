@@ -135,13 +135,13 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
                       "Residual")
   }
   if (grau == "1") {
-    r2 = round(summary(modm)$r.squared, 2)
+    r2 = round(summary(modm)$r.squared, 6)
   }
   if (grau == "2") {
-    r2 = round(summary(mod1m)$r.squared, 2)
+    r2 = round(summary(mod1m)$r.squared, 6)
   }
   if (grau == "3") {
-    r2 = round(summary(mod2m)$r.squared, 2)
+    r2 = round(summary(mod2m)$r.squared, 6)
   }
   if (grau == "1") {
     if (is.na(n) == FALSE) {
@@ -156,7 +156,7 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
     else {
       coef2 = coef(moda)[2]
     }
-    s1 = s <- sprintf("%s == %e %s %e*%s ~~~~~ italic(R^2) == %0.2f",
+    s1 = s <- sprintf("%s == %e %s %e*%s ~~~~~ italic(R^2) == %0.6f",
                       yname.poly, coef1, ifelse(coef2 >= 0, "+", "-"),
                       abs(coef2), xname.poly, r2)
   }
@@ -179,7 +179,7 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
     else {
       coef3 = coef(mod1a)[3]
     }
-    s2 = s <- sprintf("%s == %e %s %e * %s %s %e * %s^2 ~~~~~ italic(R^2) ==  %0.2f",
+    s2 = s <- sprintf("%s == %e %s %e * %s %s %e * %s^2 ~~~~~ italic(R^2) ==  %0.6f",
                       yname.poly, coef1, ifelse(coef2 >= 0, "+", "-"),
                       abs(coef2), xname.poly, ifelse(coef3 >= 0, "+", "-"),
                       abs(coef3), xname.poly, r2)
@@ -209,7 +209,7 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
     else {
       coef4 = coef(mod2a)[4]
     }
-    s3 = s <- sprintf("%s == %e %s %e * %s %s %e * %s^2 %s %0.e * %s^3 ~~~~~ italic(R^2) == %0.2f",
+    s3 = s <- sprintf("%s == %e %s %e * %s %s %e * %s^2 %s %0.e * %s^3 ~~~~~ italic(R^2) == %0.6f",
                       yname.poly, coef1, ifelse(coef2 >= 0, "+", "-"),
                       abs(coef2), xname.poly, ifelse(coef3 >= 0, "+", "-"),
                       abs(coef3), xname.poly, ifelse(coef4 >= 0, "+", "-"),
@@ -314,11 +314,20 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
       cat("Regression model")
       cat("\n----------------------------------------------------\n")
       print(mods)
+
       cat("\n----------------------------------------------------\n")
       cat("Regression biases")
       cat("\n----------------------------------------------------\n")
       print(as.matrix(fa1), na.print = " ")
+
+      if (fa1[1, "p-value"] < 0.05) {
+        cat("\n----------Considerations----------")
+        cat("\nAs p-value (Linear) < alpha, the linear model describes the data, with 95% confidence\n")
     }
+        if (fa1[2, "p-value"] > 0.05) {
+        cat("\nAs p-value (Deviations) > alpha, there are no deviations from linearity, with 95% confidence\n")
+        }
+  }
     if (grau == 2) {
       cat("\n----------------------------------------------------\n")
       cat("Regression Models")
