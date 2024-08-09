@@ -2,15 +2,15 @@
 % Please edit documentation in R/Selectivity.R
 \name{Selectivity}
 \alias{Selectivity}
-\alias{Sel}
+\alias{SEL}
 \title{Sel}
 \usage{
-Sel(t, xm, ym, y, z)
+SEL(tdp, t, ym, y, z)
 }
 \arguments{
-\item{t}{Total data points}
+\item{tdp}{Total data points}
 
-\item{xm}{X axys multiplier}
+\item{t}{Time,in minutes, of the Chromatographic run}
 
 \item{ym}{Y axys multiplier}
 
