@@ -22,11 +22,10 @@ AP<- function(x,y){
   dpr<- (sd(y)/median(y)*100)
   z= mean(y)
   rec<- (median(y)/z) *100
-  cat("Result:",rec,"+-",dpr)
+  cat("Result:", rec, "% ±", dpr, "% In the", x, "concentration")
   cat("\n\nInterpreting the result:\nThe method is considered to be accurate
 if the average recovery rates of the analyte are within
 from the range of 70 to 120%. On the other hand, the method will
 be considered accurate if the standard deviations
 relatives are less than 20%.")
 }
-
