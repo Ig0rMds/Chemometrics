@@ -32,15 +32,15 @@ ME<- function (x,y,z){
   b0mat<-coefficients(regmat)[2]
   b0sol<-coefficients(regsol)[2]
 
-  Res <- (b0mat/b0sol)*100
+  Res <- ((b0mat-b0sol)/b0sol)*100
 
-  if (Res < 100) {
+  if (Res < 0) {
     cat("Result:",Res,"% Therefore, there is a reduction in the chromatographic response\n------------------------------------------------------------------------\n")
   }
-  if (Res > 100) {
+  if (Res > 0) {
     cat("Result:",Res,"% Therefore, there is an increase in the chromatographic response\n------------------------------------------------------------------------\n")
   }
-  if (Res == 100) {
+  if (Res == 0) {
     cat("Result:",Res,"% Therefore, there is no matrix effect\n------------------------------------------------------------------------\n")
   }
 
@@ -51,4 +51,3 @@ ME<- function (x,y,z){
     geom_line(aes(y=z,col="blank sample"))+
     labs(x="Concentration", y="Chromatographic Area")
 }
-
