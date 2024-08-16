@@ -355,8 +355,10 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
   #grau 1
   if (grau == "1") {
     pvalor.shapiro <- shapiro.test(modm$residuals)$p.value
+    normal_value <- shapiro.test(modm$residuals)$statistic
     cat("\n------------------------------------------------------------------------\nShapiro-Wilk test for normality of residuals \n")
     cat("p-value: ", pvalor.shapiro, "\n")
+    cat("W: ", normal_value, "\n")
     if (pvalor.shapiro <= 0.05) {
       cat("At 95% confidence, the residues cannot be considered normal.\n------------------------------------------------------------------------\n")
     }
@@ -366,10 +368,8 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
   #grau 2
   if (grau == "2") {
     pvalor.shapiro <- shapiro.test(mod1m$residuals)$p.value
-    normal_value <- shapiro.test(modm$residuals)$statistic
     cat("\n------------------------------------------------------------------------\nTeste de normalidade dos residuos (Shapiro-Wilk)\n")
     cat("p-value: ", pvalor.shapiro, "\n")
-    cat("W: ", normal_value, "\n")
     if (pvalor.shapiro <= 0.05) {
       cat("At 5% significance, the residues cannot be considered normal.\n------------------------------------------------------------------------\n")
     }
