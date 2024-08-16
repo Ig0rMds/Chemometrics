@@ -366,8 +366,10 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
   #grau 2
   if (grau == "2") {
     pvalor.shapiro <- shapiro.test(mod1m$residuals)$p.value
+    normal_value <- shapiro.test(modm$residuals)$statistic
     cat("\n------------------------------------------------------------------------\nTeste de normalidade dos residuos (Shapiro-Wilk)\n")
     cat("p-value: ", pvalor.shapiro, "\n")
+    cat("W: ", normal_value, "\n")
     if (pvalor.shapiro <= 0.05) {
       cat("At 5% significance, the residues cannot be considered normal.\n------------------------------------------------------------------------\n")
     }
@@ -387,8 +389,10 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
     }}
   ########################################################################### Homogeneity of variances  #############################################################
   pvalor.levene <- leveneTest(modf1q)$`Pr(>F)`[1]
+  valor_F <- leveneTest(modf1q)$`F value`[1]
   cat("\n------------------------------------------------------------------------\nBrown-Forsythe Test for Homogeneity of Variances\n")
   cat("p-value: ", pvalor.levene, "\n")
+  cat("F-value: ", valor_F, "\n")
   if (pvalor.levene <= 0.05) {
     cat("At 95% confidence, the variances cannot be considered homogeneous.\n------------------------------------------------------------------------\n")
     }
@@ -400,8 +404,10 @@ REG<-function (trat, resp, ylab = "Response", xlab = "Independent",
   #grau 1
   if (grau == "1") {
     pvalor.DW <-durbinWatsonTest(modm)$p
+    valor_DW <- durbinWatsonTest(modm)$dw
     cat("\n------------------------------------------------------------------------\nDurbin-Watson Test for Independence of Residuals\n")
     cat("p-value: ", pvalor.DW, "\n")
+    cat("dw-value: ", valor_DW, "\n")
     if (pvalor.DW <= 0.05) {
       cat("At 5% significance, the residues are dependent.\n------------------------------------------------------------------------\n")
     }
