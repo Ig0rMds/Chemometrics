@@ -35,3 +35,4 @@ require(easyanova)
 ea1(x, design = 1)
 }
 
+

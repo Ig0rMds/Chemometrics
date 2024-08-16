@@ -49,5 +49,6 @@ ME<- function (x,y,z){
   ggplot(dados,aes(x=x,y=y))+
     geom_line(aes(col="Fortified sample"))+
     geom_line(aes(y=z,col="blank sample"))+
-    labs(x="Concentration", y="Chromatographic Area")
+    labs(x="Concentration", y="Chromatographic Area")+
+    theme_minimal(base_size = 15)
 }

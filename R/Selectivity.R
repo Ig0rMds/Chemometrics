@@ -42,12 +42,20 @@ SEL<- function(tdp,t,ym,y,z){
   plot_xt_yt <- ggplot(dados, aes(x = xt)) +
     geom_line(aes(y = yt, colour = "Fortified sample")) +
     scale_color_manual(values = c("Fortified sample" = "black"))+
-    labs(x = "xt", y = "yt")
+    scale_x_continuous(breaks = seq(min(xt), max(xt), by = 0.5)) +
+    scale_y_continuous(breaks = seq(min(yt), max(yt), by = 1),
+                       limits = c(min(yt), max(yt))) +
+    labs(x = "Time (minutes)", y = "Absorbance(mUA)")+
+    theme_minimal(base_size = 15)
   # Gráfico 2: xt vs zt
   plot_xt_zt <- ggplot(dados, aes(x = xt)) +
     geom_line(aes(y = zt, color = "blank sample")) +
     scale_color_manual(values = c("blank sample" = "blue"))+
-    labs(x = "xt", y = "zt")
+    scale_x_continuous(breaks = seq(min(xt), max(xt), by = 0.5)) +
+    scale_y_continuous(breaks = seq(min(yt), max(yt), by = 1),
+                       limits = c(min(yt), max(yt))) +
+    labs(x = "Time (minutes)", y = "Absorbance(mUA)")+
+    theme_minimal(base_size = 15)
 
   # Mostrar os dois gráficos na interface "plots"
   require("gridExtra")
