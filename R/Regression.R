@@ -29,7 +29,7 @@
 #'     3523445.00000,4762476.00000,4830668.00000,4853425.00000,5648307.00000,
 #'     5334327.00000,5753813.00000)
 #'REG(a,b,grau=1)
-#' note: In these data, there is an outlier at point 4
+#' #note: In these data, there is an outlier at point 4
 #'
 #'@export
 #Package chemometrics_UFVJM
