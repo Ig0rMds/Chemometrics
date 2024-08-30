@@ -26,7 +26,7 @@ AP<- function(x,y){
   cat("\n\nInterpreting the result:\nThe method is considered to be accurate
 if the average recovery rates of the analyte are within
 from the range of 70 to 120%. On the other hand, the method will
-be considered accurate if the standard deviations
+be considered Precise if the standard deviations
 relatives are less than 20%.")
 }
 
